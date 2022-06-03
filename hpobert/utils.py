@@ -73,11 +73,12 @@ def character_annotations_to_spacy_doc(inp_annotation: Dict, inp_model) -> Doc:
     text = inp_annotation["text"]  # extra
     doc = inp_model.make_doc(text)  # extra
     ents = []  # extra
-    if "spans" in inp_annotation.keys():
-        for entities_sentence in inp_annotation["spans"]:
-            start = entities_sentence["start"]
-            end = entities_sentence["end"]
-            label = entities_sentence["label"]
+    if inp_annotation['annotations'][0]['result']:
+        for entities_sentence in inp_annotation['annotations'][0]["result"]:
+            entity = entities_sentence['value']
+            start = entity["start"]
+            end = entity["end"]
+            label = entity["labels"][0]
             span = doc.char_span(start, end, label=label)
             if span is None:
                 msg = f"Skipping entity [{start}, {end}, {label}] in the following text because the character" \
@@ -99,7 +100,7 @@ def is_span_exist(span: Span, ls_spans: list) -> bool:
         if _span == span:
             return True
     return False
-    
+
 def get_iob_labels(inp_doc: Doc) -> List[str]:
     """Convert a spacy doc (with ents) to list of corresponding BIO tags"""
     return [token.ent_iob_ + "-" + token.ent_type_ if token.ent_type_ else token.ent_iob_ for token in inp_doc]
@@ -110,7 +111,7 @@ def assign_entities(doc, token_spans):
         all_spans.append(Span(doc, span['token_start'], span['token_end']+1, span['label']))
         doc.set_ents(all_spans)
     return doc
-            
+
 
 # ============================================================
 #                       I/O
@@ -123,7 +124,7 @@ def write_jsonl(file_path, lines):
     """
     data = [ujson.dumps(line, escape_forward_slashes=False) for line in lines]
     Path(file_path).open('w', encoding='utf-8').write('\n'.join(data))
-    
+
 
 def read_jsonl(file_path):
     # Taken from prodigy support
@@ -136,7 +137,7 @@ def read_jsonl(file_path):
             try:  # hack to handle broken jsonl
                 yield ujson.loads(line.strip())
             except ValueError:
-                continue         
+                continue
 
 
 # ============================================================
@@ -175,7 +176,7 @@ def get_html(html: str):
 # ============================================================
 def calc_scores(predictions: list, true_labels: list, tag_values, verbose): # TODO: add more details to input type, should be List[List[str]]?
     """Calculate precision, recall, and F1 of a batch of predictions
-    
+
     Arguments:
         predictions (list): list of predictions from model (see more in hpo.trainer.baselineNERTrainer.epoch_validate())
         true_labels (list): list of true labels
