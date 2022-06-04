@@ -70,7 +70,7 @@ def character_annotations_to_spacy_doc(inp_annotation: Dict, inp_model) -> Doc:
         2. "spans" field with a list of NER annotations in the form of  {"start": <ch_idx>, "end": <ch_idx>,
         "label": <NER label name>}
     """
-    text = inp_annotation["text"]  # extra
+    text = inp_annotation["data"]["text"]  # extra
     doc = inp_model.make_doc(text)  # extra
     ents = []  # extra
     if inp_annotation['annotations'][0]['result']:

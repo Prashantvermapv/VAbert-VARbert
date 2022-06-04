@@ -30,7 +30,7 @@ class HPODataset(Dataset):
 			self.sentences.append([str(word) for word in doc])
 			self.tags.append(bio)
 
-		self.tag_values = ['O', 'B-VA', 'I-VA', 'B-Vision', 'I-Vision', 'B-Laterality', 'I-Laterality', 'B-pinhole', 'I-pinhole'] # TODO: bad handling, need optimization
+		self.tag_values = ['O', 'B-VA', 'I-VA', 'B-Vision', 'I-Vision', 'B-Laterality', 'I-Laterality', 'B-Pinhole', 'I-Pinhole'] # TODO: bad handling, need optimization
 		self.tag_values.append("PAD")
 		self.tag2idx = {t: i for i, t in enumerate(self.tag_values)}
 		self.anns = anns # this format is useful for some function (e.g. viewing entities in terminal)
