@@ -6,7 +6,7 @@ This repository contains the code and pipelines to train named entity recognitio
   <img src="./assets/pipeline.png" width="800" />
 </p>
 
-
+# Training VA BERT
 ```
 
 ## Training
@@ -20,6 +20,11 @@ Override config's parameters by passing optional arguments
 CUDA_VISIBLE_DEVICES=1 python train.py \
 	--checkpoint 'models/name' \
 	--max_epoch 150 
+```
+# Training VA-R BERT
+```
+## Training
+USE -- jupyter notebook provided in notebook folder.
 ```
 
 Other model/checkpoint can be from huggingface: `dmis-lab/biobert-v1.1`, `bert-base-cased`, etc.
