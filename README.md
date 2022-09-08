@@ -6,23 +6,7 @@ This repository contains the code and pipelines to train named entity recognitio
   <img src="./assets/pipeline.png" width="800" />
 </p>
 
-## Installation
-Create a virtual environment:
-```bash
-conda create -n hpobert python=3.7
-conda activate hpobert
-```
 
-Install dependencies:
-```bash
-pip install -e .
-```
-
-Note that installing torch for GPU should follow this [recommendation](https://pytorch.org/get-started/locally/) depending on which cuda version has been installed in your machine.
-
-Download and set up data and model by running 
-```bash
-bash download_model.sh
 ```
 
 ## Training
