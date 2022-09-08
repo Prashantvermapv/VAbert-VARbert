@@ -1,6 +1,6 @@
 # VA BERT and VA-R BERT
 
-This repository contains the code and pipelines to train named entity recognizers for inherited retinal diseases' Human Phenotype Ontology (HPO) terms in clinical letters.
+This repository contains the code and pipelines to train named entity recognition and relation classification models for visual acuity in clinical letters.
 
 <p align="center">
   <img src="./assets/pipeline.png" width="800" />
