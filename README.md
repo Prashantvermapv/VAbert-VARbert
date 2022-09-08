@@ -1,7 +1,4 @@
-# HPOBERT
-[**Installation**](#installation) | 
-[**Preprocessing**](#preprocessing-and-annotations) | [**Training**](#Training) | [**Inference**](#inference) | 
-[**References**](#reference) | [**Contact**](#contact)
+# VA BERT and VA-R BERT
 
 This repository contains the code and pipelines to train named entity recognizers for inherited retinal diseases' Human Phenotype Ontology (HPO) terms in clinical letters.
 
